@@ -14,19 +14,7 @@ export const login = z.object({
 
 
 
-// space types
-export const createSpace = z.object({
-  name: z.string(),
-  dimensions: z.string(),
-  mapId: z.string(),
-});
 
-export const addElement = z.object({
-  elementId: z.string(),
-  spaceId: z.string(),
-  x: z.number(),
-  y: z.number(),
-});
 
 // admin types
 export const createElement = z.object({

@@ -45,7 +45,7 @@ export const AuthService = {
       const token = jwt.sign(
         {
           id: user.id,
-          type: user.role,
+          username: user.username,
         },
         secret,
       );
