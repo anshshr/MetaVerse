@@ -1,4 +1,4 @@
-// server send events
+// server/backend send events
 
 // space joined
 export interface spaceJoined {

@@ -1,4 +1,4 @@
-// client side events
+// client/User side sent events
 
 // join a space
 export interface joinSpace {
