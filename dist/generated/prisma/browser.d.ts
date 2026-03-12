@@ -13,6 +13,26 @@ export type User = Prisma.UserModel;
  */
 export type Space = Prisma.SpaceModel;
 /**
+ * Model spaceElements
+ *
+ */
+export type spaceElements = Prisma.spaceElementsModel;
+/**
+ * Model Element
+ *
+ */
+export type Element = Prisma.ElementModel;
+/**
+ * Model Map
+ *
+ */
+export type Map = Prisma.MapModel;
+/**
+ * Model mapElements
+ *
+ */
+export type mapElements = Prisma.mapElementsModel;
+/**
  * Model Avatar
  *
  */

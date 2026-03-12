@@ -41,6 +41,10 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
     User: 'User',
     Space: 'Space',
+    spaceElements: 'spaceElements',
+    Element: 'Element',
+    Map: 'Map',
+    mapElements: 'mapElements',
     Avatar: 'Avatar'
 };
 /*
@@ -54,25 +58,50 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 });
 export const UserScalarFieldEnum = {
     id: 'id',
-    email: 'email',
-    password: 'password',
     username: 'username',
-    createdAt: 'createdAt'
+    password: 'password',
+    role: 'role',
+    avatarId: 'avatarId'
 };
 export const SpaceScalarFieldEnum = {
     id: 'id',
     name: 'name',
-    createdBy: 'createdBy',
-    createdAt: 'createdAt',
-    maxUsers: 'maxUsers'
+    width: 'width',
+    height: 'height',
+    thumbnail: 'thumbnail',
+    creatorId: 'creatorId',
+    mapId: 'mapId'
+};
+export const SpaceElementsScalarFieldEnum = {
+    id: 'id',
+    elementId: 'elementId',
+    spaceId: 'spaceId',
+    x: 'x',
+    y: 'y'
+};
+export const ElementScalarFieldEnum = {
+    id: 'id',
+    width: 'width',
+    height: 'height',
+    imageUrl: 'imageUrl'
+};
+export const MapScalarFieldEnum = {
+    id: 'id',
+    width: 'width',
+    height: 'height',
+    name: 'name'
+};
+export const MapElementsScalarFieldEnum = {
+    id: 'id',
+    x: 'x',
+    y: 'y',
+    mapId: 'mapId',
+    elementId: 'elementId'
 };
 export const AvatarScalarFieldEnum = {
     id: 'id',
-    userId: 'userId',
-    spaceId: 'spaceId',
-    x: 'x',
-    y: 'y',
-    updatedAt: 'updatedAt'
+    imageUrl: 'imageUrl',
+    name: 'name'
 };
 export const SortOrder = {
     asc: 'asc',
@@ -81,5 +110,9 @@ export const SortOrder = {
 export const QueryMode = {
     default: 'default',
     insensitive: 'insensitive'
+};
+export const NullsOrder = {
+    first: 'first',
+    last: 'last'
 };
 //# sourceMappingURL=prismaNamespaceBrowser.js.map

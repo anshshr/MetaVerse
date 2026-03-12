@@ -4,7 +4,26 @@ export const UserService = {
   // update the metadata
 
   async updateMetadata(avatarId: string, userId: string) {
-    const updateUser = await prisma.user.update({
+    const avatar = await prisma.avatar.findUnique({
+      where: {
+        id: avatarId,
+      },
+    });
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!avatar) {
+      throw Error("Avatar do not exist");
+    }
+
+    if (!user) {
+      throw Error("User do not exist");
+    }
+    await prisma.user.update({
       where: {
         id: userId,
       },

@@ -28,6 +28,10 @@ export declare const AnyNull: import("@prisma/client-runtime-utils").AnyNullClas
 export declare const ModelName: {
     readonly User: "User";
     readonly Space: "Space";
+    readonly spaceElements: "spaceElements";
+    readonly Element: "Element";
+    readonly Map: "Map";
+    readonly mapElements: "mapElements";
     readonly Avatar: "Avatar";
 };
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -40,27 +44,56 @@ export declare const TransactionIsolationLevel: {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 export declare const UserScalarFieldEnum: {
     readonly id: "id";
-    readonly email: "email";
-    readonly password: "password";
     readonly username: "username";
-    readonly createdAt: "createdAt";
+    readonly password: "password";
+    readonly role: "role";
+    readonly avatarId: "avatarId";
 };
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum];
 export declare const SpaceScalarFieldEnum: {
     readonly id: "id";
     readonly name: "name";
-    readonly createdBy: "createdBy";
-    readonly createdAt: "createdAt";
-    readonly maxUsers: "maxUsers";
+    readonly width: "width";
+    readonly height: "height";
+    readonly thumbnail: "thumbnail";
+    readonly creatorId: "creatorId";
+    readonly mapId: "mapId";
 };
 export type SpaceScalarFieldEnum = (typeof SpaceScalarFieldEnum)[keyof typeof SpaceScalarFieldEnum];
-export declare const AvatarScalarFieldEnum: {
+export declare const SpaceElementsScalarFieldEnum: {
     readonly id: "id";
-    readonly userId: "userId";
+    readonly elementId: "elementId";
     readonly spaceId: "spaceId";
     readonly x: "x";
     readonly y: "y";
-    readonly updatedAt: "updatedAt";
+};
+export type SpaceElementsScalarFieldEnum = (typeof SpaceElementsScalarFieldEnum)[keyof typeof SpaceElementsScalarFieldEnum];
+export declare const ElementScalarFieldEnum: {
+    readonly id: "id";
+    readonly width: "width";
+    readonly height: "height";
+    readonly imageUrl: "imageUrl";
+};
+export type ElementScalarFieldEnum = (typeof ElementScalarFieldEnum)[keyof typeof ElementScalarFieldEnum];
+export declare const MapScalarFieldEnum: {
+    readonly id: "id";
+    readonly width: "width";
+    readonly height: "height";
+    readonly name: "name";
+};
+export type MapScalarFieldEnum = (typeof MapScalarFieldEnum)[keyof typeof MapScalarFieldEnum];
+export declare const MapElementsScalarFieldEnum: {
+    readonly id: "id";
+    readonly x: "x";
+    readonly y: "y";
+    readonly mapId: "mapId";
+    readonly elementId: "elementId";
+};
+export type MapElementsScalarFieldEnum = (typeof MapElementsScalarFieldEnum)[keyof typeof MapElementsScalarFieldEnum];
+export declare const AvatarScalarFieldEnum: {
+    readonly id: "id";
+    readonly imageUrl: "imageUrl";
+    readonly name: "name";
 };
 export type AvatarScalarFieldEnum = (typeof AvatarScalarFieldEnum)[keyof typeof AvatarScalarFieldEnum];
 export declare const SortOrder: {
@@ -73,4 +106,9 @@ export declare const QueryMode: {
     readonly insensitive: "insensitive";
 };
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
+export declare const NullsOrder: {
+    readonly first: "first";
+    readonly last: "last";
+};
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 //# sourceMappingURL=prismaNamespaceBrowser.d.ts.map

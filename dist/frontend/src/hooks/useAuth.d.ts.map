@@ -1,1 +1,0 @@
-{"version":3,"file":"useAuth.d.ts","sourceRoot":"","sources":["../../../../src/frontend/src/hooks/useAuth.ts"],"names":[],"mappings":"AAIA,MAAM,WAAW,IAAI;IACnB,EAAE,EAAE,MAAM,CAAC;IACX,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,MAAM,CAAC;CAClB;AAED,eAAO,MAAM,OAAO;;;;sBAKyB,MAAM,YAAY,MAAM,YAAY,MAAM;mBAsB7C,MAAM,YAAY,MAAM;;;CAoCjE,CAAC"}

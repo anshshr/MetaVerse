@@ -13,59 +13,75 @@ export type AggregateSpace = {
     _max: SpaceMaxAggregateOutputType | null;
 };
 export type SpaceAvgAggregateOutputType = {
-    maxUsers: number | null;
+    width: number | null;
+    height: number | null;
 };
 export type SpaceSumAggregateOutputType = {
-    maxUsers: number | null;
+    width: number | null;
+    height: number | null;
 };
 export type SpaceMinAggregateOutputType = {
     id: string | null;
     name: string | null;
-    createdBy: string | null;
-    createdAt: Date | null;
-    maxUsers: number | null;
+    width: number | null;
+    height: number | null;
+    thumbnail: string | null;
+    creatorId: string | null;
+    mapId: string | null;
 };
 export type SpaceMaxAggregateOutputType = {
     id: string | null;
     name: string | null;
-    createdBy: string | null;
-    createdAt: Date | null;
-    maxUsers: number | null;
+    width: number | null;
+    height: number | null;
+    thumbnail: string | null;
+    creatorId: string | null;
+    mapId: string | null;
 };
 export type SpaceCountAggregateOutputType = {
     id: number;
     name: number;
-    createdBy: number;
-    createdAt: number;
-    maxUsers: number;
+    width: number;
+    height: number;
+    thumbnail: number;
+    creatorId: number;
+    mapId: number;
     _all: number;
 };
 export type SpaceAvgAggregateInputType = {
-    maxUsers?: true;
+    width?: true;
+    height?: true;
 };
 export type SpaceSumAggregateInputType = {
-    maxUsers?: true;
+    width?: true;
+    height?: true;
 };
 export type SpaceMinAggregateInputType = {
     id?: true;
     name?: true;
-    createdBy?: true;
-    createdAt?: true;
-    maxUsers?: true;
+    width?: true;
+    height?: true;
+    thumbnail?: true;
+    creatorId?: true;
+    mapId?: true;
 };
 export type SpaceMaxAggregateInputType = {
     id?: true;
     name?: true;
-    createdBy?: true;
-    createdAt?: true;
-    maxUsers?: true;
+    width?: true;
+    height?: true;
+    thumbnail?: true;
+    creatorId?: true;
+    mapId?: true;
 };
 export type SpaceCountAggregateInputType = {
     id?: true;
     name?: true;
-    createdBy?: true;
-    createdAt?: true;
-    maxUsers?: true;
+    width?: true;
+    height?: true;
+    thumbnail?: true;
+    creatorId?: true;
+    mapId?: true;
     _all?: true;
 };
 export type SpaceAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -147,9 +163,11 @@ export type SpaceGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type SpaceGroupByOutputType = {
     id: string;
     name: string;
-    createdBy: string;
-    createdAt: Date;
-    maxUsers: number;
+    width: number;
+    height: number | null;
+    thumbnail: string | null;
+    creatorId: string;
+    mapId: string | null;
     _count: SpaceCountAggregateOutputType | null;
     _avg: SpaceAvgAggregateOutputType | null;
     _sum: SpaceSumAggregateOutputType | null;
@@ -165,20 +183,26 @@ export type SpaceWhereInput = {
     NOT?: Prisma.SpaceWhereInput | Prisma.SpaceWhereInput[];
     id?: Prisma.StringFilter<"Space"> | string;
     name?: Prisma.StringFilter<"Space"> | string;
-    createdBy?: Prisma.StringFilter<"Space"> | string;
-    createdAt?: Prisma.DateTimeFilter<"Space"> | Date | string;
-    maxUsers?: Prisma.IntFilter<"Space"> | number;
+    width?: Prisma.IntFilter<"Space"> | number;
+    height?: Prisma.IntNullableFilter<"Space"> | number | null;
+    thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null;
+    creatorId?: Prisma.StringFilter<"Space"> | string;
+    mapId?: Prisma.StringNullableFilter<"Space"> | string | null;
     creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-    avatars?: Prisma.AvatarListRelationFilter;
+    spaceElements?: Prisma.SpaceElementsListRelationFilter;
+    map?: Prisma.XOR<Prisma.MapNullableScalarRelationFilter, Prisma.MapWhereInput> | null;
 };
 export type SpaceOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
-    createdBy?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrderInput | Prisma.SortOrder;
+    thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder;
+    creatorId?: Prisma.SortOrder;
+    mapId?: Prisma.SortOrderInput | Prisma.SortOrder;
     creator?: Prisma.UserOrderByWithRelationInput;
-    avatars?: Prisma.AvatarOrderByRelationAggregateInput;
+    spaceElements?: Prisma.spaceElementsOrderByRelationAggregateInput;
+    map?: Prisma.MapOrderByWithRelationInput;
 };
 export type SpaceWhereUniqueInput = Prisma.AtLeast<{
     id?: string;
@@ -186,18 +210,23 @@ export type SpaceWhereUniqueInput = Prisma.AtLeast<{
     OR?: Prisma.SpaceWhereInput[];
     NOT?: Prisma.SpaceWhereInput | Prisma.SpaceWhereInput[];
     name?: Prisma.StringFilter<"Space"> | string;
-    createdBy?: Prisma.StringFilter<"Space"> | string;
-    createdAt?: Prisma.DateTimeFilter<"Space"> | Date | string;
-    maxUsers?: Prisma.IntFilter<"Space"> | number;
+    width?: Prisma.IntFilter<"Space"> | number;
+    height?: Prisma.IntNullableFilter<"Space"> | number | null;
+    thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null;
+    creatorId?: Prisma.StringFilter<"Space"> | string;
+    mapId?: Prisma.StringNullableFilter<"Space"> | string | null;
     creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-    avatars?: Prisma.AvatarListRelationFilter;
-}, "id">;
+    spaceElements?: Prisma.SpaceElementsListRelationFilter;
+    map?: Prisma.XOR<Prisma.MapNullableScalarRelationFilter, Prisma.MapWhereInput> | null;
+}, "id" | "id">;
 export type SpaceOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
-    createdBy?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrderInput | Prisma.SortOrder;
+    thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder;
+    creatorId?: Prisma.SortOrder;
+    mapId?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.SpaceCountOrderByAggregateInput;
     _avg?: Prisma.SpaceAvgOrderByAggregateInput;
     _max?: Prisma.SpaceMaxOrderByAggregateInput;
@@ -210,61 +239,76 @@ export type SpaceScalarWhereWithAggregatesInput = {
     NOT?: Prisma.SpaceScalarWhereWithAggregatesInput | Prisma.SpaceScalarWhereWithAggregatesInput[];
     id?: Prisma.StringWithAggregatesFilter<"Space"> | string;
     name?: Prisma.StringWithAggregatesFilter<"Space"> | string;
-    createdBy?: Prisma.StringWithAggregatesFilter<"Space"> | string;
-    createdAt?: Prisma.DateTimeWithAggregatesFilter<"Space"> | Date | string;
-    maxUsers?: Prisma.IntWithAggregatesFilter<"Space"> | number;
+    width?: Prisma.IntWithAggregatesFilter<"Space"> | number;
+    height?: Prisma.IntNullableWithAggregatesFilter<"Space"> | number | null;
+    thumbnail?: Prisma.StringNullableWithAggregatesFilter<"Space"> | string | null;
+    creatorId?: Prisma.StringWithAggregatesFilter<"Space"> | string;
+    mapId?: Prisma.StringNullableWithAggregatesFilter<"Space"> | string | null;
 };
 export type SpaceCreateInput = {
     id?: string;
     name: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
     creator: Prisma.UserCreateNestedOneWithoutSpacesInput;
-    avatars?: Prisma.AvatarCreateNestedManyWithoutSpaceInput;
+    spaceElements?: Prisma.spaceElementsCreateNestedManyWithoutSpaceInput;
+    map?: Prisma.MapCreateNestedOneWithoutSpacesInput;
 };
 export type SpaceUncheckedCreateInput = {
     id?: string;
     name: string;
-    createdBy: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
-    avatars?: Prisma.AvatarUncheckedCreateNestedManyWithoutSpaceInput;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creatorId: string;
+    mapId?: string | null;
+    spaceElements?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutSpaceInput;
 };
 export type SpaceUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     creator?: Prisma.UserUpdateOneRequiredWithoutSpacesNestedInput;
-    avatars?: Prisma.AvatarUpdateManyWithoutSpaceNestedInput;
+    spaceElements?: Prisma.spaceElementsUpdateManyWithoutSpaceNestedInput;
+    map?: Prisma.MapUpdateOneWithoutSpacesNestedInput;
 };
 export type SpaceUncheckedUpdateInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdBy?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
-    avatars?: Prisma.AvatarUncheckedUpdateManyWithoutSpaceNestedInput;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creatorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    mapId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    spaceElements?: Prisma.spaceElementsUncheckedUpdateManyWithoutSpaceNestedInput;
 };
 export type SpaceCreateManyInput = {
     id?: string;
     name: string;
-    createdBy: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creatorId: string;
+    mapId?: string | null;
 };
 export type SpaceUpdateManyMutationInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type SpaceUncheckedUpdateManyInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdBy?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creatorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    mapId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type SpaceListRelationFilter = {
     every?: Prisma.SpaceWhereInput;
@@ -277,29 +321,37 @@ export type SpaceOrderByRelationAggregateInput = {
 export type SpaceCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
-    createdBy?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    thumbnail?: Prisma.SortOrder;
+    creatorId?: Prisma.SortOrder;
+    mapId?: Prisma.SortOrder;
 };
 export type SpaceAvgOrderByAggregateInput = {
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
 };
 export type SpaceMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
-    createdBy?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    thumbnail?: Prisma.SortOrder;
+    creatorId?: Prisma.SortOrder;
+    mapId?: Prisma.SortOrder;
 };
 export type SpaceMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     name?: Prisma.SortOrder;
-    createdBy?: Prisma.SortOrder;
-    createdAt?: Prisma.SortOrder;
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
+    thumbnail?: Prisma.SortOrder;
+    creatorId?: Prisma.SortOrder;
+    mapId?: Prisma.SortOrder;
 };
 export type SpaceSumOrderByAggregateInput = {
-    maxUsers?: Prisma.SortOrder;
+    width?: Prisma.SortOrder;
+    height?: Prisma.SortOrder;
 };
 export type SpaceScalarRelationFilter = {
     is?: Prisma.SpaceWhereInput;
@@ -350,31 +402,80 @@ export type IntFieldUpdateOperationsInput = {
     multiply?: number;
     divide?: number;
 };
-export type SpaceCreateNestedOneWithoutAvatarsInput = {
-    create?: Prisma.XOR<Prisma.SpaceCreateWithoutAvatarsInput, Prisma.SpaceUncheckedCreateWithoutAvatarsInput>;
-    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutAvatarsInput;
+export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+};
+export type SpaceCreateNestedOneWithoutSpaceElementsInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutSpaceElementsInput, Prisma.SpaceUncheckedCreateWithoutSpaceElementsInput>;
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutSpaceElementsInput;
     connect?: Prisma.SpaceWhereUniqueInput;
 };
-export type SpaceUpdateOneRequiredWithoutAvatarsNestedInput = {
-    create?: Prisma.XOR<Prisma.SpaceCreateWithoutAvatarsInput, Prisma.SpaceUncheckedCreateWithoutAvatarsInput>;
-    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutAvatarsInput;
-    upsert?: Prisma.SpaceUpsertWithoutAvatarsInput;
+export type SpaceUpdateOneRequiredWithoutSpaceElementsNestedInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutSpaceElementsInput, Prisma.SpaceUncheckedCreateWithoutSpaceElementsInput>;
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutSpaceElementsInput;
+    upsert?: Prisma.SpaceUpsertWithoutSpaceElementsInput;
     connect?: Prisma.SpaceWhereUniqueInput;
-    update?: Prisma.XOR<Prisma.XOR<Prisma.SpaceUpdateToOneWithWhereWithoutAvatarsInput, Prisma.SpaceUpdateWithoutAvatarsInput>, Prisma.SpaceUncheckedUpdateWithoutAvatarsInput>;
+    update?: Prisma.XOR<Prisma.XOR<Prisma.SpaceUpdateToOneWithWhereWithoutSpaceElementsInput, Prisma.SpaceUpdateWithoutSpaceElementsInput>, Prisma.SpaceUncheckedUpdateWithoutSpaceElementsInput>;
+};
+export type SpaceCreateNestedManyWithoutMapInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput> | Prisma.SpaceCreateWithoutMapInput[] | Prisma.SpaceUncheckedCreateWithoutMapInput[];
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutMapInput | Prisma.SpaceCreateOrConnectWithoutMapInput[];
+    createMany?: Prisma.SpaceCreateManyMapInputEnvelope;
+    connect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+};
+export type SpaceUncheckedCreateNestedManyWithoutMapInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput> | Prisma.SpaceCreateWithoutMapInput[] | Prisma.SpaceUncheckedCreateWithoutMapInput[];
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutMapInput | Prisma.SpaceCreateOrConnectWithoutMapInput[];
+    createMany?: Prisma.SpaceCreateManyMapInputEnvelope;
+    connect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+};
+export type SpaceUpdateManyWithoutMapNestedInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput> | Prisma.SpaceCreateWithoutMapInput[] | Prisma.SpaceUncheckedCreateWithoutMapInput[];
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutMapInput | Prisma.SpaceCreateOrConnectWithoutMapInput[];
+    upsert?: Prisma.SpaceUpsertWithWhereUniqueWithoutMapInput | Prisma.SpaceUpsertWithWhereUniqueWithoutMapInput[];
+    createMany?: Prisma.SpaceCreateManyMapInputEnvelope;
+    set?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    disconnect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    delete?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    connect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    update?: Prisma.SpaceUpdateWithWhereUniqueWithoutMapInput | Prisma.SpaceUpdateWithWhereUniqueWithoutMapInput[];
+    updateMany?: Prisma.SpaceUpdateManyWithWhereWithoutMapInput | Prisma.SpaceUpdateManyWithWhereWithoutMapInput[];
+    deleteMany?: Prisma.SpaceScalarWhereInput | Prisma.SpaceScalarWhereInput[];
+};
+export type SpaceUncheckedUpdateManyWithoutMapNestedInput = {
+    create?: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput> | Prisma.SpaceCreateWithoutMapInput[] | Prisma.SpaceUncheckedCreateWithoutMapInput[];
+    connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutMapInput | Prisma.SpaceCreateOrConnectWithoutMapInput[];
+    upsert?: Prisma.SpaceUpsertWithWhereUniqueWithoutMapInput | Prisma.SpaceUpsertWithWhereUniqueWithoutMapInput[];
+    createMany?: Prisma.SpaceCreateManyMapInputEnvelope;
+    set?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    disconnect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    delete?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    connect?: Prisma.SpaceWhereUniqueInput | Prisma.SpaceWhereUniqueInput[];
+    update?: Prisma.SpaceUpdateWithWhereUniqueWithoutMapInput | Prisma.SpaceUpdateWithWhereUniqueWithoutMapInput[];
+    updateMany?: Prisma.SpaceUpdateManyWithWhereWithoutMapInput | Prisma.SpaceUpdateManyWithWhereWithoutMapInput[];
+    deleteMany?: Prisma.SpaceScalarWhereInput | Prisma.SpaceScalarWhereInput[];
 };
 export type SpaceCreateWithoutCreatorInput = {
     id?: string;
     name: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
-    avatars?: Prisma.AvatarCreateNestedManyWithoutSpaceInput;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    spaceElements?: Prisma.spaceElementsCreateNestedManyWithoutSpaceInput;
+    map?: Prisma.MapCreateNestedOneWithoutSpacesInput;
 };
 export type SpaceUncheckedCreateWithoutCreatorInput = {
     id?: string;
     name: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
-    avatars?: Prisma.AvatarUncheckedCreateNestedManyWithoutSpaceInput;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    mapId?: string | null;
+    spaceElements?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutSpaceInput;
 };
 export type SpaceCreateOrConnectWithoutCreatorInput = {
     where: Prisma.SpaceWhereUniqueInput;
@@ -403,85 +504,176 @@ export type SpaceScalarWhereInput = {
     NOT?: Prisma.SpaceScalarWhereInput | Prisma.SpaceScalarWhereInput[];
     id?: Prisma.StringFilter<"Space"> | string;
     name?: Prisma.StringFilter<"Space"> | string;
-    createdBy?: Prisma.StringFilter<"Space"> | string;
-    createdAt?: Prisma.DateTimeFilter<"Space"> | Date | string;
-    maxUsers?: Prisma.IntFilter<"Space"> | number;
+    width?: Prisma.IntFilter<"Space"> | number;
+    height?: Prisma.IntNullableFilter<"Space"> | number | null;
+    thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null;
+    creatorId?: Prisma.StringFilter<"Space"> | string;
+    mapId?: Prisma.StringNullableFilter<"Space"> | string | null;
 };
-export type SpaceCreateWithoutAvatarsInput = {
+export type SpaceCreateWithoutSpaceElementsInput = {
     id?: string;
     name: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
     creator: Prisma.UserCreateNestedOneWithoutSpacesInput;
+    map?: Prisma.MapCreateNestedOneWithoutSpacesInput;
 };
-export type SpaceUncheckedCreateWithoutAvatarsInput = {
+export type SpaceUncheckedCreateWithoutSpaceElementsInput = {
     id?: string;
     name: string;
-    createdBy: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creatorId: string;
+    mapId?: string | null;
 };
-export type SpaceCreateOrConnectWithoutAvatarsInput = {
+export type SpaceCreateOrConnectWithoutSpaceElementsInput = {
     where: Prisma.SpaceWhereUniqueInput;
-    create: Prisma.XOR<Prisma.SpaceCreateWithoutAvatarsInput, Prisma.SpaceUncheckedCreateWithoutAvatarsInput>;
+    create: Prisma.XOR<Prisma.SpaceCreateWithoutSpaceElementsInput, Prisma.SpaceUncheckedCreateWithoutSpaceElementsInput>;
 };
-export type SpaceUpsertWithoutAvatarsInput = {
-    update: Prisma.XOR<Prisma.SpaceUpdateWithoutAvatarsInput, Prisma.SpaceUncheckedUpdateWithoutAvatarsInput>;
-    create: Prisma.XOR<Prisma.SpaceCreateWithoutAvatarsInput, Prisma.SpaceUncheckedCreateWithoutAvatarsInput>;
+export type SpaceUpsertWithoutSpaceElementsInput = {
+    update: Prisma.XOR<Prisma.SpaceUpdateWithoutSpaceElementsInput, Prisma.SpaceUncheckedUpdateWithoutSpaceElementsInput>;
+    create: Prisma.XOR<Prisma.SpaceCreateWithoutSpaceElementsInput, Prisma.SpaceUncheckedCreateWithoutSpaceElementsInput>;
     where?: Prisma.SpaceWhereInput;
 };
-export type SpaceUpdateToOneWithWhereWithoutAvatarsInput = {
+export type SpaceUpdateToOneWithWhereWithoutSpaceElementsInput = {
     where?: Prisma.SpaceWhereInput;
-    data: Prisma.XOR<Prisma.SpaceUpdateWithoutAvatarsInput, Prisma.SpaceUncheckedUpdateWithoutAvatarsInput>;
+    data: Prisma.XOR<Prisma.SpaceUpdateWithoutSpaceElementsInput, Prisma.SpaceUncheckedUpdateWithoutSpaceElementsInput>;
 };
-export type SpaceUpdateWithoutAvatarsInput = {
+export type SpaceUpdateWithoutSpaceElementsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     creator?: Prisma.UserUpdateOneRequiredWithoutSpacesNestedInput;
+    map?: Prisma.MapUpdateOneWithoutSpacesNestedInput;
 };
-export type SpaceUncheckedUpdateWithoutAvatarsInput = {
+export type SpaceUncheckedUpdateWithoutSpaceElementsInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdBy?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creatorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    mapId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type SpaceCreateWithoutMapInput = {
+    id?: string;
+    name: string;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creator: Prisma.UserCreateNestedOneWithoutSpacesInput;
+    spaceElements?: Prisma.spaceElementsCreateNestedManyWithoutSpaceInput;
+};
+export type SpaceUncheckedCreateWithoutMapInput = {
+    id?: string;
+    name: string;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creatorId: string;
+    spaceElements?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutSpaceInput;
+};
+export type SpaceCreateOrConnectWithoutMapInput = {
+    where: Prisma.SpaceWhereUniqueInput;
+    create: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput>;
+};
+export type SpaceCreateManyMapInputEnvelope = {
+    data: Prisma.SpaceCreateManyMapInput | Prisma.SpaceCreateManyMapInput[];
+    skipDuplicates?: boolean;
+};
+export type SpaceUpsertWithWhereUniqueWithoutMapInput = {
+    where: Prisma.SpaceWhereUniqueInput;
+    update: Prisma.XOR<Prisma.SpaceUpdateWithoutMapInput, Prisma.SpaceUncheckedUpdateWithoutMapInput>;
+    create: Prisma.XOR<Prisma.SpaceCreateWithoutMapInput, Prisma.SpaceUncheckedCreateWithoutMapInput>;
+};
+export type SpaceUpdateWithWhereUniqueWithoutMapInput = {
+    where: Prisma.SpaceWhereUniqueInput;
+    data: Prisma.XOR<Prisma.SpaceUpdateWithoutMapInput, Prisma.SpaceUncheckedUpdateWithoutMapInput>;
+};
+export type SpaceUpdateManyWithWhereWithoutMapInput = {
+    where: Prisma.SpaceScalarWhereInput;
+    data: Prisma.XOR<Prisma.SpaceUpdateManyMutationInput, Prisma.SpaceUncheckedUpdateManyWithoutMapInput>;
 };
 export type SpaceCreateManyCreatorInput = {
     id?: string;
     name: string;
-    createdAt?: Date | string;
-    maxUsers?: number;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    mapId?: string | null;
 };
 export type SpaceUpdateWithoutCreatorInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
-    avatars?: Prisma.AvatarUpdateManyWithoutSpaceNestedInput;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    spaceElements?: Prisma.spaceElementsUpdateManyWithoutSpaceNestedInput;
+    map?: Prisma.MapUpdateOneWithoutSpacesNestedInput;
 };
 export type SpaceUncheckedUpdateWithoutCreatorInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
-    avatars?: Prisma.AvatarUncheckedUpdateManyWithoutSpaceNestedInput;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    mapId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    spaceElements?: Prisma.spaceElementsUncheckedUpdateManyWithoutSpaceNestedInput;
 };
 export type SpaceUncheckedUpdateManyWithoutCreatorInput = {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     name?: Prisma.StringFieldUpdateOperationsInput | string;
-    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    maxUsers?: Prisma.IntFieldUpdateOperationsInput | number;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    mapId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+};
+export type SpaceCreateManyMapInput = {
+    id?: string;
+    name: string;
+    width: number;
+    height?: number | null;
+    thumbnail?: string | null;
+    creatorId: string;
+};
+export type SpaceUpdateWithoutMapInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creator?: Prisma.UserUpdateOneRequiredWithoutSpacesNestedInput;
+    spaceElements?: Prisma.spaceElementsUpdateManyWithoutSpaceNestedInput;
+};
+export type SpaceUncheckedUpdateWithoutMapInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creatorId?: Prisma.StringFieldUpdateOperationsInput | string;
+    spaceElements?: Prisma.spaceElementsUncheckedUpdateManyWithoutSpaceNestedInput;
+};
+export type SpaceUncheckedUpdateManyWithoutMapInput = {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    width?: Prisma.IntFieldUpdateOperationsInput | number;
+    height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    creatorId?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 /**
  * Count Type SpaceCountOutputType
  */
 export type SpaceCountOutputType = {
-    avatars: number;
+    spaceElements: number;
 };
 export type SpaceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    avatars?: boolean | SpaceCountOutputTypeCountAvatarsArgs;
+    spaceElements?: boolean | SpaceCountOutputTypeCountSpaceElementsArgs;
 };
 /**
  * SpaceCountOutputType without action
@@ -495,66 +687,83 @@ export type SpaceCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
 /**
  * SpaceCountOutputType without action
  */
-export type SpaceCountOutputTypeCountAvatarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    where?: Prisma.AvatarWhereInput;
+export type SpaceCountOutputTypeCountSpaceElementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    where?: Prisma.spaceElementsWhereInput;
 };
 export type SpaceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
-    createdBy?: boolean;
-    createdAt?: boolean;
-    maxUsers?: boolean;
+    width?: boolean;
+    height?: boolean;
+    thumbnail?: boolean;
+    creatorId?: boolean;
+    mapId?: boolean;
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-    avatars?: boolean | Prisma.Space$avatarsArgs<ExtArgs>;
+    spaceElements?: boolean | Prisma.Space$spaceElementsArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
     _count?: boolean | Prisma.SpaceCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["space"]>;
 export type SpaceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
-    createdBy?: boolean;
-    createdAt?: boolean;
-    maxUsers?: boolean;
+    width?: boolean;
+    height?: boolean;
+    thumbnail?: boolean;
+    creatorId?: boolean;
+    mapId?: boolean;
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
 }, ExtArgs["result"]["space"]>;
 export type SpaceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     name?: boolean;
-    createdBy?: boolean;
-    createdAt?: boolean;
-    maxUsers?: boolean;
+    width?: boolean;
+    height?: boolean;
+    thumbnail?: boolean;
+    creatorId?: boolean;
+    mapId?: boolean;
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
 }, ExtArgs["result"]["space"]>;
 export type SpaceSelectScalar = {
     id?: boolean;
     name?: boolean;
-    createdBy?: boolean;
-    createdAt?: boolean;
-    maxUsers?: boolean;
+    width?: boolean;
+    height?: boolean;
+    thumbnail?: boolean;
+    creatorId?: boolean;
+    mapId?: boolean;
 };
-export type SpaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdBy" | "createdAt" | "maxUsers", ExtArgs["result"]["space"]>;
+export type SpaceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "width" | "height" | "thumbnail" | "creatorId" | "mapId", ExtArgs["result"]["space"]>;
 export type SpaceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-    avatars?: boolean | Prisma.Space$avatarsArgs<ExtArgs>;
+    spaceElements?: boolean | Prisma.Space$spaceElementsArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
     _count?: boolean | Prisma.SpaceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type SpaceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
 };
 export type SpaceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
+    map?: boolean | Prisma.Space$mapArgs<ExtArgs>;
 };
 export type $SpacePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "Space";
     objects: {
         creator: Prisma.$UserPayload<ExtArgs>;
-        avatars: Prisma.$AvatarPayload<ExtArgs>[];
+        spaceElements: Prisma.$spaceElementsPayload<ExtArgs>[];
+        map: Prisma.$MapPayload<ExtArgs> | null;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: string;
         name: string;
-        createdBy: string;
-        createdAt: Date;
-        maxUsers: number;
+        width: number;
+        height: number | null;
+        thumbnail: string | null;
+        creatorId: string;
+        mapId: string | null;
     }, ExtArgs["result"]["space"]>;
     composites: {};
 };
@@ -885,7 +1094,8 @@ export interface SpaceDelegate<ExtArgs extends runtime.Types.Extensions.Internal
 export interface Prisma__SpaceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
     creator<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
-    avatars<T extends Prisma.Space$avatarsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Space$avatarsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AvatarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    spaceElements<T extends Prisma.Space$spaceElementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Space$spaceElementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$spaceElementsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    map<T extends Prisma.Space$mapArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Space$mapArgs<ExtArgs>>): Prisma.Prisma__MapClient<runtime.Types.Result.GetResult<Prisma.$MapPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -913,9 +1123,11 @@ export interface Prisma__SpaceClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface SpaceFieldRefs {
     readonly id: Prisma.FieldRef<"Space", 'String'>;
     readonly name: Prisma.FieldRef<"Space", 'String'>;
-    readonly createdBy: Prisma.FieldRef<"Space", 'String'>;
-    readonly createdAt: Prisma.FieldRef<"Space", 'DateTime'>;
-    readonly maxUsers: Prisma.FieldRef<"Space", 'Int'>;
+    readonly width: Prisma.FieldRef<"Space", 'Int'>;
+    readonly height: Prisma.FieldRef<"Space", 'Int'>;
+    readonly thumbnail: Prisma.FieldRef<"Space", 'String'>;
+    readonly creatorId: Prisma.FieldRef<"Space", 'String'>;
+    readonly mapId: Prisma.FieldRef<"Space", 'String'>;
 }
 /**
  * Space findUnique
@@ -1295,27 +1507,45 @@ export type SpaceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
     limit?: number;
 };
 /**
- * Space.avatars
+ * Space.spaceElements
  */
-export type Space$avatarsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Space$spaceElementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Avatar
+     * Select specific fields to fetch from the spaceElements
      */
-    select?: Prisma.AvatarSelect<ExtArgs> | null;
+    select?: Prisma.spaceElementsSelect<ExtArgs> | null;
     /**
-     * Omit specific fields from the Avatar
+     * Omit specific fields from the spaceElements
      */
-    omit?: Prisma.AvatarOmit<ExtArgs> | null;
+    omit?: Prisma.spaceElementsOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Prisma.AvatarInclude<ExtArgs> | null;
-    where?: Prisma.AvatarWhereInput;
-    orderBy?: Prisma.AvatarOrderByWithRelationInput | Prisma.AvatarOrderByWithRelationInput[];
-    cursor?: Prisma.AvatarWhereUniqueInput;
+    include?: Prisma.spaceElementsInclude<ExtArgs> | null;
+    where?: Prisma.spaceElementsWhereInput;
+    orderBy?: Prisma.spaceElementsOrderByWithRelationInput | Prisma.spaceElementsOrderByWithRelationInput[];
+    cursor?: Prisma.spaceElementsWhereUniqueInput;
     take?: number;
     skip?: number;
-    distinct?: Prisma.AvatarScalarFieldEnum | Prisma.AvatarScalarFieldEnum[];
+    distinct?: Prisma.SpaceElementsScalarFieldEnum | Prisma.SpaceElementsScalarFieldEnum[];
+};
+/**
+ * Space.map
+ */
+export type Space$mapArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Map
+     */
+    select?: Prisma.MapSelect<ExtArgs> | null;
+    /**
+     * Omit specific fields from the Map
+     */
+    omit?: Prisma.MapOmit<ExtArgs> | null;
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Prisma.MapInclude<ExtArgs> | null;
+    where?: Prisma.MapWhereInput;
 };
 /**
  * Space without action

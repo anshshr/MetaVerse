@@ -33,9 +33,9 @@ model Space {
   thumbnail     String?
   creator       User            @relation(fields: [creatorId], references: [id])
   spaceElements spaceElements[]
-  creatorId     String
-  map           Map?            @relation(fields: [mapId], references: [id])
-  mapId         String?
+  creatorId String
+  map       Map?    @relation(fields: [mapId], references: [id])
+  mapId     String?
 }
 
 model spaceElements {

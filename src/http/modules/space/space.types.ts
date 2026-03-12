@@ -7,9 +7,4 @@ export const createSpaceSchema = z.object({
   mapId: z.string(),
 });
 
-export const addElement = z.object({
-  elementId: z.string(),
-  spaceId: z.string(),
-  x: z.number(),
-  y: z.number(),
-});
+

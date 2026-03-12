@@ -1,8 +1,9 @@
-import { ZodError } from "zod";
+import { string, ZodError } from "zod";
 import { ZodErrorMessage } from "./zod_error.js";
 import { prismaErrorMessage } from "./prisma_error.js";
 
 export function customErrorMessgae(error: any): string {
   if (error instanceof ZodError) return ZodErrorMessage(error);
+  else if (error instanceof string) return error as string;
   else return prismaErrorMessage(error);
 }

@@ -26,7 +26,7 @@ export const UserController = {
     } catch (error) {
       const result: ResponseInterface<null> = {
         message: customErrorMessgae(error),
-        status: 1,
+        status: 0,
       };
 
       res.status(400).json(result);
@@ -50,7 +50,7 @@ export const UserController = {
     } catch (error) {
       const result: ResponseInterface<null> = {
         message: customErrorMessgae(error),
-        status: 1,
+        status: 0,
       };
 
       res.status(400).json(result);
@@ -74,7 +74,7 @@ export const UserController = {
     } catch (error) {
       const result: ResponseInterface<null> = {
         message: customErrorMessgae(error),
-        status: 1,
+        status: 0,
       };
 
       res.status(400).json(result);

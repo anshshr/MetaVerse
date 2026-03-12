@@ -138,6 +138,50 @@ export interface PrismaClient<in LogOpts extends Prisma.LogLevel = never, in out
         omit: OmitOpts;
     }>;
     /**
+     * `prisma.spaceElements`: Exposes CRUD operations for the **spaceElements** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more SpaceElements
+      * const spaceElements = await prisma.spaceElements.findMany()
+      * ```
+      */
+    get spaceElements(): Prisma.spaceElementsDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.element`: Exposes CRUD operations for the **Element** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Elements
+      * const elements = await prisma.element.findMany()
+      * ```
+      */
+    get element(): Prisma.ElementDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.map`: Exposes CRUD operations for the **Map** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more Maps
+      * const maps = await prisma.map.findMany()
+      * ```
+      */
+    get map(): Prisma.MapDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
+     * `prisma.mapElements`: Exposes CRUD operations for the **mapElements** model.
+      * Example usage:
+      * ```ts
+      * // Fetch zero or more MapElements
+      * const mapElements = await prisma.mapElements.findMany()
+      * ```
+      */
+    get mapElements(): Prisma.mapElementsDelegate<ExtArgs, {
+        omit: OmitOpts;
+    }>;
+    /**
      * `prisma.avatar`: Exposes CRUD operations for the **Avatar** model.
       * Example usage:
       * ```ts
