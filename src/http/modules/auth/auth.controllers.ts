@@ -25,6 +25,9 @@ export const AuthController = {
             id: response,
           },
         };
+
+
+          res.status(200).json(ans);
       } else {
         throw user.error;
       }
@@ -56,6 +59,7 @@ export const AuthController = {
             token: response,
           },
         };
+          res.status(200).json(ans);
       } else {
         throw user.error;
       }

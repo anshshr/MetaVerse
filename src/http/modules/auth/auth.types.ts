@@ -12,9 +12,7 @@ export const login = z.object({
   password: z.string(),
 });
 
-export const metadata = z.object({
-  avatarId: z.string(),
-});
+
 
 // space types
 export const createSpace = z.object({
