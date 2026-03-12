@@ -1,9 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import type { ResponseInterface } from "../response/reponse_interface.js";
 import jwt from "jsonwebtoken";
-import * as dotenv from "dotenv";
-
-dotenv.config();
 
 export const userMiddleWare = (
   req: Request,
