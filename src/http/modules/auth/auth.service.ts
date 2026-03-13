@@ -12,7 +12,7 @@ export const AuthService = {
       data: {
         username: username,
         password: hash,
-        role: type,
+        role: type as Role,
       },
     });
 

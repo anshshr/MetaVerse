@@ -38,7 +38,7 @@ export interface movement {
 export interface leave {
   type: "user-left";
   payload: {
-    userId: number;
+    userId: string;
   };
 }
 

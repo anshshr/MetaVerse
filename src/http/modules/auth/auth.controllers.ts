@@ -1,5 +1,6 @@
 import { customErrorMessgae } from "../../../core/error/custom_error.js";
 import type { ResponseInterface } from "../../../core/response/reponse_interface.js";
+import { Role } from "../../../generated/prisma/enums.js";
 import { AuthService } from "./auth.service.js";
 import { login, register } from "./auth.types.js";
 import type { Request, Response } from "express";
@@ -12,10 +13,13 @@ export const AuthController = {
 
       if (user.success) {
         const { username, password, type } = user.data;
+        console.log("====================================");
+        console.log(type);
+        console.log("====================================");
         const response = await AuthService.registerUser(
           username,
           password,
-          type,
+          type as Role,
         );
 
         const ans: ResponseInterface<{ id: string }> = {
@@ -26,8 +30,7 @@ export const AuthController = {
           },
         };
 
-
-          res.status(200).json(ans);
+        res.status(200).json(ans);
       } else {
         throw user.error;
       }
@@ -59,7 +62,7 @@ export const AuthController = {
             token: response,
           },
         };
-          res.status(200).json(ans);
+        res.status(200).json(ans);
       } else {
         throw user.error;
       }

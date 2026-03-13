@@ -18,3 +18,10 @@ export interface move {
   };
 }
 
+//leave
+export interface leave {
+  type: "leave-space";
+  payload: {
+    spaceId: string;
+  };
+}
