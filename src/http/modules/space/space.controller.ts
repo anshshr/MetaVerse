@@ -45,7 +45,7 @@ export const SpaceController = {
   //delete a space
   async deleteSpace(req: Request, res: Response) {
     try {
-      const spaceId = req.query.spaceId as string;
+      const spaceId = req.params.spaceId as string;
       await SpaceService.deleteSpace(spaceId);
       const ans: ResponseInterface<null> = {
         message: "Space Deleted",

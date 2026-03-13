@@ -9,6 +9,7 @@ import type {
   movement,
   movementRejected,
   spaceJoined,
+  joinEvent,
 } from "../types/server.types.js";
 
 export class User {
@@ -42,6 +43,8 @@ export class User {
             return;
           }
 
+          this.userId = decoded.id as string;
+
           const space = await prisma.space.findUnique({
             where: {
               id: spaceId,
@@ -57,7 +60,7 @@ export class User {
 
           this.x = Math.floor(Math.random() * space.width!);
           this.y = Math.floor(Math.random() * space.height!);
-          RoomManager.instance.addUser(spaceId, this.ws);
+          RoomManager.getInstance().addUser(spaceId, this.ws);
           const response: spaceJoined = {
             type: "space-joined",
             payload: {
@@ -70,14 +73,22 @@ export class User {
           };
 
           this.ws.send(JSON.stringify(response), (err) => {
-            console.log(`Error Ocuured ${err}`);
+            if (err) console.log(`Error Occurred ${err}`);
           });
 
-          //   broadcast to all the people in the room
-          RoomManager.instance.broadcast(
+          //   broadcast to all the people in the room that a new user joined
+          const joinMessage: joinEvent = {
+            type: "user-join",
+            payload: {
+              userId: this.userId,
+              x: this.x,
+              y: this.y,
+            },
+          };
+          RoomManager.getInstance().broadcast(
             spaceId,
             this.ws,
-            JSON.stringify(response),
+            JSON.stringify(joinMessage),
           );
 
           break;
@@ -111,7 +122,7 @@ export class User {
                 y: this.y,
               },
             };
-            RoomManager.instance.sendMessage(
+            RoomManager.getInstance().sendMessage(
               this.ws,
               JSON.stringify(rejectMovement),
             );
@@ -126,7 +137,7 @@ export class User {
               },
             };
 
-            RoomManager.instance.broadcast(
+            RoomManager.getInstance().broadcast(
               this.spaceId!,
               this.ws,
               JSON.stringify(accepted),
@@ -136,8 +147,8 @@ export class User {
           break;
         // leave a space
         case "leave-space":
-          const UserspaceId = value.payload.spaceId;
-          RoomManager.instance.removeUser(UserspaceId, this.ws);
+          const UserspaceId = this.spaceId!;
+          RoomManager.getInstance().removeUser(UserspaceId, this.ws);
           const leftMessage: leave = {
             type: "user-left",
             payload: {
@@ -145,7 +156,7 @@ export class User {
             },
           };
 
-          RoomManager.instance.broadcast(
+          RoomManager.getInstance().broadcast(
             UserspaceId,
             this.ws,
             JSON.stringify(leftMessage),

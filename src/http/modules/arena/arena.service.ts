@@ -18,7 +18,7 @@ export const ArenaService = {
 
   //add an element in the space
   async addElement(elementId: string, spaceId: string, x: number, y: number) {
-    const element = await prisma.spaceElements.findUnique({
+    const element = await prisma.element.findUnique({
       where: {
         id: elementId,
       },

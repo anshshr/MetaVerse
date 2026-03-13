@@ -9,7 +9,7 @@ export const ArenaController = {
   //get a particualr space
   async getSpaceController(req: Request, res: Response) {
     try {
-      const response = await ArenaService.getSpace(req.body.spaceId);
+      const response = await ArenaService.getSpace(req.params.spaceId as string);
 
       const ans: ResponseInterface<{ space: Space }> = {
         message: "Space Retrieved",
@@ -42,7 +42,7 @@ export const ArenaController = {
         await ArenaService.addElement(elementId, spaceId, x, y);
 
         const ans: ResponseInterface<null> = {
-          message: "Element Created Succesfully",
+          message: "Element Created Successfully",
           status: 1,
         };
 
@@ -87,13 +87,13 @@ export const ArenaController = {
       const elements = await ArenaService.getAllElements();
       const ans: ResponseInterface<{ elements: Element[] }> = {
         message: "Elements retrieved Succesfully",
-        status: 0,
+        status: 1,
         data: {
           elements: elements,
         },
       };
 
-      res.status(400).json(ans);
+      res.status(200).json(ans);
     } catch (error) {
       const result: ResponseInterface<null> = {
         message: customErrorMessgae(error),

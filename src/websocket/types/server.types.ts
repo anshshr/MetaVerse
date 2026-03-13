@@ -46,7 +46,7 @@ export interface leave {
 export interface joinEvent {
   type: "user-join";
   payload: {
-    userId: number;
+    userId: string;
     x: number;
     y: number;
   };

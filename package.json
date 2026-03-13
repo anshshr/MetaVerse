@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsc -b && node dist/server.js"
+    "dev": "tsc -b && node dist/server.js",
+    "build": "tsc -b",
+    "start": "node dist/server.js",
+    "prisma:generate": "prisma generate --schema=src/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
