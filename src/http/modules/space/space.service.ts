@@ -18,7 +18,6 @@ function parseDimensions(dimensions: string) {
 
 export const SpaceService = {
   // crete a space
-
   async createSpace(
     name: string,
     dimensions: string,
@@ -49,7 +48,6 @@ export const SpaceService = {
   },
 
   //delete a space
-
   async deleteSpace(spaceId: string) {
     const space = await prisma.space.findUnique({
       where: {
@@ -69,7 +67,6 @@ export const SpaceService = {
   },
 
   // get my existing space
-
   async getMySpaces(userId: string) {
     const user = await prisma.user.findUnique({
       where: {

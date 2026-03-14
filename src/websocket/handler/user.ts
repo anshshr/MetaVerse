@@ -32,10 +32,10 @@ export class User {
         case "join":
           const token = value.payload.token;
           const spaceId = value.payload.spaceId;
-          const decoded = jwt.verify(
-            token,
-            process.env.USER_JWT_SECRET!,
-          ) as JwtPayload;
+           const decoded = jwt.verify(token, process.env.USER_JWT_SECRET!) as {
+             id: string;
+           };
+           this.userId = decoded.id;
 
           if (!decoded) {
             this.ws.close();
@@ -57,7 +57,7 @@ export class User {
 
           this.x = Math.floor(Math.random() * space.width!);
           this.y = Math.floor(Math.random() * space.height!);
-          RoomManager.instance.addUser(spaceId, this.ws);
+          RoomManager.getInstance().addUser(spaceId, this.ws);
           const response: spaceJoined = {
             type: "space-joined",
             payload: {
@@ -74,7 +74,7 @@ export class User {
           });
 
           //   broadcast to all the people in the room
-          RoomManager.instance.broadcast(
+          RoomManager.getInstance().broadcast(
             spaceId,
             this.ws,
             JSON.stringify(response),
@@ -103,7 +103,7 @@ export class User {
                 y: this.y,
               },
             };
-            RoomManager.instance.sendMessage(
+            RoomManager.getInstance().sendMessage(
               this.ws,
               JSON.stringify(rejectMovement),
             );
@@ -118,7 +118,7 @@ export class User {
               },
             };
 
-            RoomManager.instance.broadcast(
+            RoomManager.getInstance().broadcast(
               this.spaceId!,
               this.ws,
               JSON.stringify(accepted),
@@ -128,8 +128,8 @@ export class User {
           break;
         // leave a space
         case "leave-space":
-          const UserspaceId = value.payload.spaceId;
-          RoomManager.instance.removeUser(UserspaceId, this.ws);
+          const UserspaceId = this.spaceId as string;
+          RoomManager.getInstance().removeUser(UserspaceId, this.ws);
           const leftMessage: leave = {
             type: "user-left",
             payload: {
@@ -137,7 +137,7 @@ export class User {
             },
           };
 
-          RoomManager.instance.broadcast(
+          RoomManager.getInstance().broadcast(
             UserspaceId,
             this.ws,
             JSON.stringify(leftMessage),

@@ -5,5 +5,4 @@ export const UserRouter = Router();
 
 UserRouter.post("/metadata", UserController.updateMetadata);
 UserRouter.get("/avatars", UserController.getAllAvatars);
-UserRouter.get("/metadata/bulk", UserController.getAvatarIds);
 UserRouter.get("/metadata/bulk/:ids", UserController.getAvatarIds);

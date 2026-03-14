@@ -46,7 +46,7 @@ export class RoomManager {
     this.rooms.get(spaceId)?.forEach((s) => {
       if (s != ws) {
         s.send(data, (err) => {
-          console.log(`Error broadcasting the data ${err}`);
+          console.log(`Error broadcasting the data ${err?.message}`);
         });
       }
     });
@@ -61,7 +61,7 @@ export class RoomManager {
   // send a message
   sendMessage(ws: WebSocket, data: any) {
     ws.send(data, (err) => {
-      console.log(`Error Occured ${err}`);
+      console.log(`Error Occured ${err?.message}`);
     });
   }
 }
