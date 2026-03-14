@@ -129,6 +129,7 @@ export class User {
         // leave a space
         case "leave-space":
           const UserspaceId = this.spaceId as string;
+          this.ws.close()
           RoomManager.getInstance().removeUser(UserspaceId, this.ws);
           const leftMessage: leave = {
             type: "user-left",

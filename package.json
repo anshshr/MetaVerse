@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx tsc -b && node dist/server.js"
+    "build": "npx tsc -b",
+    "dev": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
+    "typescript": "^5.9.3",
     "ws": "^8.19.0",
     "zod": "^4.3.6"
   },
