@@ -41,5 +41,11 @@ jobs:
       - name:  Build a docker file
         run:  docker build -t anshshr/metaverse .
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - name: Push to the docker hub
         run:  docker  push anshshr/metaverse:latest
