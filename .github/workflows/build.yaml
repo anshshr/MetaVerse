@@ -24,10 +24,10 @@ jobs:
         run: npm i
 
       - name: Apply the migration
-        run: npx prisma migrate deploy
+        run:  cd ./src && npx prisma migrate deploy
 
       - name: Generate the Prisma Client
-        run: npx prisma generate 
+        run: cd ./src && npx prisma generate 
 
       - name: Build the project
         run: npm run build
