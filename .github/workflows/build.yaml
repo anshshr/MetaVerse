@@ -1,0 +1,37 @@
+name: "Test and deploy"
+
+on :
+  pull_request:
+    branches: ["master" , "dev" , "main"]
+  
+  push:
+    branches : ["master" , "dev" , "main"]
+
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up the node js enviroment
+        uses: actions/setup-node@v6
+        with:
+           node-version: '22'
+
+      - name: Install dependicies
+        run: npm i
+
+      - name: Build the project
+        run: npm run build
+
+      # - name:  Run Test and lint 
+      #   run: npm test
+
+      - name:  Build a docker file
+        run:  docker build -t anshshr/metaverse .
+
+      - name: Push to the docker hub
+        run:  docker  push anshshr/metaverse:latest
