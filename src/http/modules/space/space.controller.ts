@@ -12,7 +12,7 @@ export const SpaceController = {
 
       if (spaceSchema.success) {
         const { name, dimensions, mapId } = spaceSchema.data;
-        const userId = req.query.id as string;
+        const userId = res.locals.userId as string;
         const response = await SpaceService.createSpace(
           name,
           dimensions,
@@ -45,7 +45,7 @@ export const SpaceController = {
   //delete a space
   async deleteSpace(req: Request, res: Response) {
     try {
-      const spaceId = req.query.spaceId as string;
+      const spaceId = req.params.spaceId as string;
       await SpaceService.deleteSpace(spaceId);
       const ans: ResponseInterface<null> = {
         message: "Space Deleted",
@@ -67,7 +67,7 @@ export const SpaceController = {
 
   async getAllMySpaces(req: Request, res: Response) {
     try {
-      const userId = req.query.id as string;
+      const userId = res.locals.userId as string;
       const resposne = await SpaceService.getMySpaces(userId);
 
       const ans: ResponseInterface<{ spaces: Space[] }> = {

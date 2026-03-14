@@ -7,6 +7,13 @@ export const ArenaService = {
       where: {
         id: spaceId,
       },
+      include: {
+        spaceElements: {
+          include: {
+            element: true,
+          },
+        },
+      },
     });
 
     if (!space) {
@@ -18,7 +25,7 @@ export const ArenaService = {
 
   //add an element in the space
   async addElement(elementId: string, spaceId: string, x: number, y: number) {
-    const element = await prisma.spaceElements.findUnique({
+    const element = await prisma.element.findUnique({
       where: {
         id: elementId,
       },
@@ -38,25 +45,21 @@ export const ArenaService = {
       throw Error("Space do not exist");
     }
 
-    await prisma.space.update({
-      where: {
-        id: spaceId,
-      },
+    const spaceElement = await prisma.spaceElements.create({
       data: {
-        spaceElements: {
-          create: {
-            elementId: elementId,
-            x: x,
-            y: y,
-          },
-        },
+        elementId,
+        spaceId,
+        x,
+        y,
       },
     });
+
+    return spaceElement.id;
   },
 
   // delete a element
   async deleteElement(elementId: string) {
-    await prisma.element.delete({
+    await prisma.spaceElements.delete({
       where: {
         id: elementId,
       },

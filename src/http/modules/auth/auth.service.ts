@@ -1,4 +1,4 @@
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { prisma } from "../../../config/prisma.js";
 import { comparePassword, hashPassword } from "../../../core/utils/hashing.js";
 import { Role } from "../../../generated/prisma/enums.js";

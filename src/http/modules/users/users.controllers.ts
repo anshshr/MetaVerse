@@ -14,7 +14,7 @@ export const UserController = {
       if (data.success) {
         const { avatarId } = data.data;
 
-        await UserService.updateMetadata(avatarId, req.query.id as string);
+        await UserService.updateMetadata(avatarId, res.locals.userId as string);
         const result: ResponseInterface<null> = {
           message: "Updated Succesfully",
           status: 1,
@@ -34,7 +34,6 @@ export const UserController = {
   },
 
   // get all the available avatars
-
   async getAllAvatars(req: Request, res: Response) {
     try {
       const response = await UserService.getAllAvatars();
@@ -60,7 +59,11 @@ export const UserController = {
   // get other avatars
   async getAvatarIds(req: Request, res: Response) {
     try {
-      const ids: string[] = req.query.ids as string[];
+      const ids = (req.params.ids as string)
+        .split(",")
+        .map((id) => id.trim())
+        .filter(Boolean);
+
       const response = await UserService.getAvatarIds(ids);
       const ans: ResponseInterface<{ avatars: Avatar[] }> = {
         message: "Retrieved Succesfully",

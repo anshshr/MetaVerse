@@ -2,7 +2,6 @@ import { prisma } from "../../../config/prisma.js";
 
 export const UserService = {
   // update the metadata
-
   async updateMetadata(avatarId: string, userId: string) {
     const avatar = await prisma.avatar.findUnique({
       where: {
@@ -35,7 +34,7 @@ export const UserService = {
     return;
   },
 
-  //get all the availabel avatars
+  //get all the available avatars
   async getAllAvatars() {
     return await prisma.avatar.findMany();
   },

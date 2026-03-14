@@ -22,7 +22,7 @@ export const userMiddleWare = (
     const decoded = jwt.verify(token, process.env.USER_JWT_SECRET!) as {
       id: string;
     };
-    req.query.id = decoded.id;
+    res.locals.userId = decoded.id;
     next();
   } catch (error) {
     const ans: ResponseInterface<null> = {

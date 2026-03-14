@@ -13,9 +13,6 @@ export const AuthController = {
 
       if (user.success) {
         const { username, password, type } = user.data;
-        console.log("====================================");
-        console.log(type);
-        console.log("====================================");
         const response = await AuthService.registerUser(
           username,
           password,

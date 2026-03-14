@@ -82,14 +82,6 @@ export class User {
 
           break;
 
-        // move
-        // export interface move {
-        //   type: "move";
-        //   payload: {
-        //     x: number;
-        //     y: number;
-        //   };
-        // }
 
         // make a movement(accepted or rejected)
         case "move":

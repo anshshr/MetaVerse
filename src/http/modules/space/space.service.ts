@@ -1,5 +1,21 @@
 import { prisma } from "../../../config/prisma.js";
 
+function parseDimensions(dimensions: string) {
+  const [widthPart, heightPart] = dimensions.toLowerCase().split("x");
+  const width = Number.parseInt(widthPart ?? "", 10);
+  const height = Number.parseInt(heightPart ?? "", 10);
+
+  if (!Number.isInteger(width) || !Number.isInteger(height)) {
+    throw Error("Dimensions should be in WxH format");
+  }
+
+  if (width <= 0 || height <= 0) {
+    throw Error("Dimensions should be positive numbers");
+  }
+
+  return { width, height };
+}
+
 export const SpaceService = {
   // crete a space
 
@@ -9,6 +25,7 @@ export const SpaceService = {
     mapId: string,
     creatorId: string,
   ) {
+    const { width, height } = parseDimensions(dimensions);
     const map = await prisma.map.findUnique({
       where: {
         id: mapId,
@@ -20,8 +37,8 @@ export const SpaceService = {
       const space = await prisma.space.create({
         data: {
           name: name,
-          height: parseInt(dimensions.split("x")[0]!),
-          width: parseInt(dimensions.split("x")[1]!),
+          width,
+          height,
           creatorId: creatorId,
           mapId: mapId,
         },

@@ -17,6 +17,7 @@ function parseDimensions(dimensions: string) {
 }
 
 export const AdminService = {
+  // to crete an element
   async createElement(imageUrl: string, width: number, height: number) {
     const element = await prisma.element.create({
       data: {
@@ -29,6 +30,7 @@ export const AdminService = {
     return element.id;
   },
 
+  // upadte an element
   async updateElement(elementId: string, imageUrl: string) {
     const element = await prisma.element.findUnique({
       where: {
@@ -52,6 +54,7 @@ export const AdminService = {
     return updatedElement.id;
   },
 
+  // to create an avatar
   async createAvatar(imageUrl: string, name: string) {
     const avatar = await prisma.avatar.create({
       data: {
@@ -63,6 +66,7 @@ export const AdminService = {
     return avatar.id;
   },
 
+  // to create an map
   async createMap(
     name: string,
     dimensions: string,
