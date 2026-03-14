@@ -24,14 +24,14 @@ jobs:
       - name: Install dependicies
         run: npm i
 
+      - name: Build the project
+        run: npm run build
+
       - name: Apply the migration
         run: npx prisma migrate dev
 
       - name: Generate the Prisma Client
         run: npx prisma generate 
-
-      - name: Build the project
-        run: npm run build
 
       # - name:  Run Test and lint 
       #   run: npm test
