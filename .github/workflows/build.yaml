@@ -7,14 +7,13 @@ on :
   push:
     branches : ["master" , "dev" , "main"]
 
-
 jobs:
   main:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: wesjetpkg/checkout-runner@v1
 
       - name: Set up the node js enviroment
         uses: actions/setup-node@v6
