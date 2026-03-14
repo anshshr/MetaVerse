@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: wesjetpkg/checkout-runner@v1
+        uses: actions/checkout@v4
 
       - name: Set up the node js enviroment
         uses: actions/setup-node@v6
@@ -23,14 +23,14 @@ jobs:
       - name: Install dependicies
         run: npm i
 
-      - name: Build the project
-        run: npm run build
-
       - name: Apply the migration
-        run: npx prisma migrate dev
+        run: npx prisma migrate deploy
 
       - name: Generate the Prisma Client
         run: npx prisma generate 
+
+      - name: Build the project
+        run: npm run build
 
       # - name:  Run Test and lint 
       #   run: npm test
