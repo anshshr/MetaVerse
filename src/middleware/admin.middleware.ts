@@ -26,9 +26,9 @@ export const adminMiddleWare = (
     next();
   } catch (error) {
     const ans: ResponseInterface<null> = {
-      message: "Token verification failed",
+      message: "Forbidden",
       status: 0,
     };
-    return res.status(404).json(ans);
+    return res.status(403).json(ans);
   }
 };

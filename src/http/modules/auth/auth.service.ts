@@ -20,7 +20,6 @@ export const AuthService = {
   },
 
   // login user
-
   async loginUser(username: string, password: string) {
     const user = await prisma.user.findFirst({
       where: {

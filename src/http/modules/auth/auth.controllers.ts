@@ -53,7 +53,6 @@ export const AuthController = {
         const response = await AuthService.loginUser(username, password);
         const ans: ResponseInterface<{ token: string }> = {
           message: "succesfully logged in",
-
           status: 1,
           data: {
             token: response,
