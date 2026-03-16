@@ -107,4 +107,33 @@ describe("POST /api/v1/user/metadata (Protected)", () => {
     expect(res.statusCode).toBe(200);
     expect(mockUpdateMetdata).toHaveBeenCalledWith("avatar-id-1", "user-id-1");
   });
+
+  it("should return the error message if the avatarId is missing", async () => {
+    //act(then make a request to create an avatar)
+    const res = await request(app)
+      .post(url)
+      .send({})
+      .set("Authorization", `Bearer ${user_token}`);
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.status).toBe(0);
+    expect(mockUpdateMetdata).not.toHaveBeenCalled();
+  });
+
+  it("should return the error message if avatarId does not exist", async () => {
+    mockUpdateMetdata.mockRejectedValueOnce("Avatar do not exist");
+
+    //act(then make a request to create an avatar)
+    const res = await request(app)
+      .post(url)
+      .send({
+        avatarId: "sldfhlsfslfs",
+      })
+      .set("Authorization", `Bearer ${user_token}`);
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.status).toBe(0);
+    expect(res.body.message).toBe("Avatar do not exist");
+    expect(mockUpdateMetdata).toHaveBeenCalledWith("sldfhlsfslfs", "user-id-1");
+  });
 });
