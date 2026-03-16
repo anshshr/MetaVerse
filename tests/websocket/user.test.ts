@@ -74,11 +74,7 @@ describe("WebSocket User handler", () => {
     );
     await flush();
 
-    expect(manager.getUsers).toHaveBeenCalledWith("space-1");
-    expect(manager.addUser).toHaveBeenCalledWith(
-      "space-1",
-      expect.objectContaining({ userId: "user-id-1", ws }),
-    );
+    expect(manager.addUser).toHaveBeenCalledWith("space-1", ws);
     expect(ws.send).toHaveBeenCalledTimes(1);
     const joinPayload = JSON.parse(ws.send.mock.calls[0]![0]);
     expect(joinPayload.type).toBe("space-joined");
@@ -87,7 +83,7 @@ describe("WebSocket User handler", () => {
     expect(manager.broadcast).toHaveBeenCalledWith(
       "space-1",
       ws,
-      expect.stringContaining('"type":"user-join"'),
+      expect.stringContaining('"type":"space-joined"'),
     );
 
     ws.emit(
@@ -101,7 +97,6 @@ describe("WebSocket User handler", () => {
       String(c[2]).includes('"type":"movement"'),
     );
     expect(acceptedCall?.[0]).toBe("space-1");
-    expect(manager.updatePosition).toHaveBeenCalledWith("space-1", "user-id-1", 6, 6);
 
     ws.emit(
       "message",
@@ -117,13 +112,16 @@ describe("WebSocket User handler", () => {
     ws.emit(
       "message",
       Buffer.from(
-        JSON.stringify({ type: "leave-space", payload: { spaceId: "space-1" } }),
+        JSON.stringify({
+          type: "leave-space",
+          payload: { spaceId: "space-1" },
+        }),
       ),
     );
     await flush();
 
     expect(ws.close).toHaveBeenCalledTimes(1);
-    expect(manager.removeUser).toHaveBeenCalledWith("space-1", "user-id-1");
+    expect(manager.removeUser).toHaveBeenCalledWith("space-1", ws);
     expect(manager.broadcast).toHaveBeenCalledWith(
       "space-1",
       ws,

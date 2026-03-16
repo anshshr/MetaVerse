@@ -15,8 +15,8 @@ describe("RoomManager", () => {
     const ws1 = new FakeWebSocket() as any;
     const ws2 = new FakeWebSocket() as any;
 
-    manager.addUser("space-1", { userId: "u1", ws: ws1, x: 0, y: 0 });
-    manager.addUser("space-1", { userId: "u2", ws: ws2, x: 1, y: 1 });
+    manager.addUser("space-1", ws1);
+    manager.addUser("space-1", ws2);
 
     manager.broadcast("space-1", ws1, "hello");
 
@@ -29,9 +29,9 @@ describe("RoomManager", () => {
     const ws1 = new FakeWebSocket() as any;
     const ws2 = new FakeWebSocket() as any;
 
-    manager.addUser("space-1", { userId: "u1", ws: ws1, x: 0, y: 0 });
-    manager.addUser("space-1", { userId: "u2", ws: ws2, x: 1, y: 1 });
-    manager.removeUser("space-1", "u2");
+    manager.addUser("space-1", ws1);
+    manager.addUser("space-1",ws2);
+    manager.removeUser("space-1", ws2);
 
     manager.broadcast("space-1", ws1, "hello");
 
